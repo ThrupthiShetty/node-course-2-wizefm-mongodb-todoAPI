@@ -36,13 +36,7 @@ MongoClient.connect('mongodb://wizetrndbuser:welcome1@localhost:27017/wizetrndb'
     //     console.log("id is ",result.ops[0].__id.getTimeStamp())
     // })
     
-    db.collection('Todos').find().toArray().then((docs) =>{
-        console.log('Todos')
-        console.log(JSON.stringify(docs,undefined,3))
-    },(err) =>{
-        console.log('unable to reach todos',err)
-    })
     
     
-   // db.close();
+    db.close();
 })
