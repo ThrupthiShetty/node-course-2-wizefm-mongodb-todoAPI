@@ -3,7 +3,7 @@ const { ObjectID } = require("mongodb")
 var express = require("express");
 var bodyParser = require("body-parser")
 
-
+const port = process.env.PORT || 3000;
 var { mongoose } = require('./db/mongoose.js')
 
 var { Todo } = require('./models/todo.js')
@@ -69,8 +69,8 @@ app.get('/todos/:id', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log('listening to port 3000')
+app.listen(port, () => {
+    console.log('listening to port ',port)
 })
 
 
