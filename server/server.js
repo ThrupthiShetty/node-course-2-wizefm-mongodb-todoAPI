@@ -3,7 +3,7 @@ const { ObjectID } = require("mongodb")
 var express = require("express");
 var bodyParser = require("body-parser")
 
-const port = process.env.PORT || 3000;
+const port =  3000;
 var { mongoose } = require('./db/mongoose.js')
 
 var { Todo } = require('./models/todo.js')
@@ -50,6 +50,44 @@ app.get('/todos/:id', (req, res) => {
     //findBy Id
 
     Todo.findById(id).then((todos) => {
+
+        // success
+        // if no todo send back 404 with empty bode
+
+        if (!todos) {
+
+            return res.status(400).send();
+        }
+        //if todo send it back
+
+       // res.send(JSON.stringify(todos, undefined, 2))
+        res.send({todos})
+        //console.log('Todos By Id', todos)
+
+    }).catch((e) => {
+         res.status(400).send()
+    })
+})
+
+
+//remove
+
+
+app.delete('/todos/:id', (req, res) => {
+    //res.send(req.params)
+
+    var id = req.params.id;
+
+    //valid id using isValid
+    //400 send back emmpty send
+    if (!ObjectID.isValid(id)) {
+       // console.log('id is not valid')
+        return res.status(400).send();
+    }
+
+    //findBy Id
+
+    Todo.findByIdAndRemove(id).then((todos) => {
 
         // success
         // if no todo send back 404 with empty bode
