@@ -43,7 +43,7 @@ app.get('/todos/:id', (req, res) => {
     //valid id using isValid
     //400 send back emmpty send
     if (!ObjectID.isValid(id)) {
-        console.log('id is not valid')
+       // console.log('id is not valid')
         return res.status(400).send();
     }
 
@@ -62,7 +62,7 @@ app.get('/todos/:id', (req, res) => {
 
        // res.send(JSON.stringify(todos, undefined, 2))
         res.send({todos})
-        console.log('Todos By Id', todos)
+        //console.log('Todos By Id', todos)
 
     }).catch((e) => {
          res.status(400).send()
